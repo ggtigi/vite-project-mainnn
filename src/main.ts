@@ -599,9 +599,9 @@ function fibonacci(n: number): number {
     for (let i = 3; i <= n; i++) {
         temp = a + b;
         a = b;
-        b = temp;
+        b = temp
     }
-    return b;
+    return b
 }
 
 
@@ -610,7 +610,7 @@ console.log(greatestCommonDivisor(24, 36))
 console.log(maxDigit(23658))
 console.log(isPrime(17))
 console.log(primeFactors(18))
-console.log(fibonacci(6))
+console.log(fibonacci(6));
 
 
 
