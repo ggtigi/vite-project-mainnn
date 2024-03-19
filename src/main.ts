@@ -534,7 +534,7 @@ function raiseToPower(base: number, exponent: number): number {
 }
 
 // dzM1W5.2 Написать функцию поиска наибольшего общего делителя.
-function greatestCommonDivisor(a: number, b: number): number {
+function greatestCommonDivisorr(a: number, b: number): number {
     if (b === 0) {
         return a;
     } else {
@@ -599,18 +599,146 @@ function fibonacci(n: number): number {
     for (let i = 3; i <= n; i++) {
         temp = a + b;
         a = b;
-        b = temp
+        b = temp;
     }
     return b
 }
 
 
 console.log(raiseToPower(2, 3))
-console.log(greatestCommonDivisor(24, 36))
+console.log(greatestCommonDivisorr(24, 36))
 console.log(maxDigit(23658))
 console.log(isPrime(17))
 console.log(primeFactors(18))
-console.log(fibonacci(6));
+console.log(fibonacci(6))
+
+
+
+// dzM2W1.1 Задание 1
+// Создать объект, описывающий автомобиль (производитель,
+// модель, год выпуска, средняя скорость), и следующие функции
+// для работы с этим объектом.
+// 1
+// Функция для вывода на экран информации об автомобиле.
+// 2
+// Функция для подсчета необходимого времени для пре-
+// одоления переданного расстояния со средней скоростью.
+// Учтите, что через каждые 4 часа дороги водителю необхо-
+// димо делать перерыв на 1 час.
+
+interface Car {
+    manufacturer: string
+    model: string
+    year: number
+    averageSpeed: number
+}
+
+function printCarInfo(car: Car): void {
+    console.log(`Производитель: ${car.manufacturer}`)
+    console.log(`Модель: ${car.model}`)
+    console.log(`Год выпуска: ${car.year}`)
+    console.log(`Средняя скорость: ${car.averageSpeed} км/ч`)
+}
+
+function calculateTravelTime(car: Car, distance: number): void {
+    const travelTime = distance / car.averageSpeed;
+    const restCount = Math.floor(travelTime / 4)
+    const totalTime = travelTime + restCount
+
+    console.log(`Для преодоления расстояния ${distance} км потребуется времени: ${totalTime} ч`)
+}
+
+const myCar: Car = {
+    manufacturer: 'BMW',
+    model: 'M5 F90',
+    year: 201000,
+    averageSpeed: 7000
+}
+
+printCarInfo(myCar)
+
+calculateTravelTime(myCar, 10000)
+
+
+// dzM2W1.2 
+// Создать объект, хранящий в себе отдельно числитель и зна-
+// менатель дроби, и следующие функции для работы с этим объ-
+// ектом.
+// 1
+// Функция сложения 2-х объектов-дробей.
+// 2
+// Функция вычитания 2-х объектов-дробей.
+// 3
+// Функция умножения 2-х объектов-дробей.
+// 4
+// Функция деления 2-х объектов-дробей.
+// 5
+// Функция сокращения объекта-дроби.
+
+interface Fraction {
+    numerator: number
+    denominator: number
+}
+
+
+function addFractions(fraction1: Fraction, fraction2: Fraction): Fraction {
+    const resultNumerator = fraction1.numerator * fraction2.denominator + fraction2.numerator * fraction1.denominator
+    const resultDenominator = fraction1.denominator * fraction2.denominator
+    return simplifyFraction({ numerator: resultNumerator, denominator: resultDenominator })
+}
+
+
+function subtractFractions(fraction1: Fraction, fraction2: Fraction): Fraction {
+    const resultNumerator = fraction1.numerator * fraction2.denominator - fraction2.numerator * fraction1.denominator
+    const resultDenominator = fraction1.denominator * fraction2.denominator
+    return simplifyFraction({ numerator: resultNumerator, denominator: resultDenominator })
+}
+
+
+function multiplyFractions(fraction1: Fraction, fraction2: Fraction): Fraction {
+    const resultNumerator = fraction1.numerator * fraction2.numerator
+    const resultDenominator = fraction1.denominator * fraction2.denominator
+    return simplifyFraction({ numerator: resultNumerator, denominator: resultDenominator })
+}
+
+
+function divideFractions(fraction1: Fraction, fraction2: Fraction): Fraction {
+    const resultNumerator = fraction1.numerator * fraction2.denominator
+    const resultDenominator = fraction1.denominator * fraction2.numerator
+    return simplifyFraction({ numerator: resultNumerator, denominator: resultDenominator })
+}
+
+
+function simplifyFraction(fraction: Fraction): Fraction {
+    const gcd = greatestCommonDivisor(fraction.numerator, fraction.denominator)
+    return {
+        numerator: fraction.numerator / gcd,
+        denominator: fraction.denominator / gcd
+    };
+}
+
+
+function greatestCommonDivisor(a: number, b: number): number {
+    return b === 0 ? a : greatestCommonDivisor(b, a % b)
+}
+
+
+const fraction1: Fraction = { numerator: 1, denominator: 2 }
+const fraction2: Fraction = { numerator: 3, denominator: 4 }
+
+
+console.log("Сложение:", addFractions(fraction1, fraction2))
+
+console.log("Вычитание:", subtractFractions(fraction1, fraction2))
+
+
+console.log("Умножение:", multiplyFractions(fraction1, fraction2))
+
+
+console.log("Деление:", divideFractions(fraction1, fraction2))
+
+
+
 
 
 
