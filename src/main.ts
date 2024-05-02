@@ -933,6 +933,40 @@ function chechForSpam (str: string): boolean {
 }
 console.log(chechForSpam('получите сейчас 100% бесплатно'))
 
+// Создайте объект Date для даты: 20 февраля 2012 года, 3 часа 12 минут. Временная зона – местная.
+const date = new Date(2012, 1, 20, 3, 12)
+console.log(date)
+
+// Напишите функцию getWeekDay(date), показывающую день недели в коротком
+//  формате: «ПН», «ВТ», «СР», «ЧТ», «ПТ», «СБ», «ВС».
+function getWeekDay(date: Date): string {
+    const days = ["ВС", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС"];
+    return days[date.getDate()];
+}
+const date1 = new Date(2024, 1, 7)
+console.log(getWeekDay(date1))
+
+// В Европейских странах неделя начинается с понедельника (день номер 1), затем идёт вторник (номер 2) и так до воскресенья (номер 7). Напишите функцию getLocalDay(date), которая возвращает «европейский» день недели для даты date.
+
+function getLocalDay(date: Date): number {
+    let day = date.getUTCDate()
+    if (day == 0) {
+        day = 7
+    }
+    return day
+    
+}
+const date2 = new Date(2024, 0, 2)
+console.log(getLocalDay(date2))
+
+// Какой день месяца был много дней назад?
+// важность: 4
+// Создайте функцию getDateAgo(date, days), возвращающую число, которое было days дней назад от даты date.
+
+// К примеру, если сегодня двадцатое число, то getDateAgo(new Date(), 1) вернёт девятнадцатое и getDateAgo(new Date(), 2) – восемнадцатое.
+
+// Функция должна надёжно работать при значении days=365 и больших значениях
+
 
 
 
