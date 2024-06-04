@@ -957,15 +957,50 @@ function getLocalDay(date: Date): number {
     
 }
 const date2 = new Date(2024, 0, 2)
-console.log(getLocalDay(date2))
+console.log(getLocalDay(date2)) 
 
-// Какой день месяца был много дней назад?
-// важность: 4
-// Создайте функцию getDateAgo(date, days), возвращающую число, которое было days дней назад от даты date.
+// z1
+function clear(elem: HTMLElement): void {
+    while (elem.firstChild) {
+        elem.removeChild(elem.firstChild);
+    }
+}
 
-// К примеру, если сегодня двадцатое число, то getDateAgo(new Date(), 1) вернёт девятнадцатое и getDateAgo(new Date(), 2) – восемнадцатое.
+// z2
 
-// Функция должна надёжно работать при значении days=365 и больших значениях
+const ulElement = document.querySelector('ul')
+
+function createListItem() {
+    const userInput = console.log('Введите название элемента')
+    if (userInput == null || userInput == '') {
+        return;
+    }
+    const liElement = document.createElement ('li')
+    liElement.textContent = userInput
+    ulElement?.appendChild(liElement)
+
+    createListItem()
+}
+createListItem()
+
+// Напишите функцию showNotification(options), которая создаёт уведомление: <div class="notification"> с заданным содержимым. Уведомление должно автоматически исчезнуть через 1,5 секунды.
+
+function showNotification(options: { content: string }): void {
+    const notification = document.createElement('div');
+    notification.classList.add('notification');
+    notification.textContent = options.content;
+    document.body.appendChild(notification);
+
+    setTimeout(() => {
+        document.body.removeChild(notification);
+    }, 1500);
+}
+const button = document.createElement('button')
+button.textContent = 'показать уведомление'
+document.body.appendChild(button);
+button.addEventListener('click', () => {
+    showNotification({content: 'Привет мир!'})
+})
 
 
 
